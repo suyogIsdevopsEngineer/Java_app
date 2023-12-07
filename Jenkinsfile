@@ -31,7 +31,8 @@ pipeline{
 
         stage('Static code Analysis: Sonarqube'){
             steps{
-                sonarStaticAnalysis()
+                def SonaraqubeCredentialsId = 'sonar-api'
+                sonarStaticAnalysis(SonaraqubeCredentialsId)
             }
         }
     }
