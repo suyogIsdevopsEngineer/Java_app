@@ -1,6 +1,9 @@
 @Library('my-shared-librabry') _
 pipeline{
     agent any
+    options {
+    skipDefaultCheckout(true)
+   }
 
     stages{
         
