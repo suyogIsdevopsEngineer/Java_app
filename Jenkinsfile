@@ -1,42 +1,44 @@
-@Library('my-shared-librabry') _
-pipeline{
+@Library('my-shared-library') _
+
+pipeline {
     agent any
+
     options {
-    skipDefaultCheckout(true)
-   }
+        skipDefaultCheckout(true)
+    }
 
-    stages{
-        
-        stage('Git Checkout'){
-        steps {
-            gitCheckout(
-                branch: "main",
-                url: 'https://github.com/suyogIsdevopsEngineer/Java_app.git'
-            )
-                
+    stages {
+        stage('Git Checkout') {
+            steps {
+                script {
+                    git branch: "main", url: 'https://github.com/suyogIsdevopsEngineer/Java_app.git'
+                }
             }
         }
 
-        stage('Unit test Maven'){
-        steps {
-            mvnTest()
-        }
-        }
-        
-        stage('Integration Test maven'){
-            steps{
-                mvnIntegration()
+        stage('Unit test Maven') {
+            steps {
+                script {
+                    mvnTest()
+                }
             }
         }
 
-        stage('Static code Analysis: Sonarqube'){
-            steps{
+        stage('Integration Test Maven') {
+            steps {
+                script {
+                    mvnIntegration()
+                }
+            }
+        }
 
-                def SonaraqubeCredentialsId = 'sonar-api'
-                sonarStaticAnalysis(SonaraqubeCredentialsId)
-            
-
+        stage('Static code Analysis: Sonarqube') {
+            steps {
+                script {
+                    def SonarqubeCredentialsId = 'sonar-api'
+                    sonarStaticAnalysis(SonarqubeCredentialsId)
+                }
             }
         }
     }
-    }
+}
