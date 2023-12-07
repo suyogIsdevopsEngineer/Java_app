@@ -46,7 +46,16 @@
                 </execution>
             </executions>
 			</plugin>
+			<plugin>
+            <groupId>org.sonarsource.scanner.maven</groupId>
+            <artifactId>sonar-maven-plugin</artifactId>
+            <version>3.10.0.2594</version>
+        </plugin>
 		</plugins>
 	</build>
+
+	<properties>
+    <sonar.host.url>http://44.204.34.59:9000</sonar.host.url>
+</properties>
 
 </project>
