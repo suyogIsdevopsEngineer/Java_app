@@ -1,44 +1,45 @@
-@Library('my-shared-library') _
+@Library('my-shared-librabry') _
 
 pipeline {
     agent any
-
+	
     options {
-        skipDefaultCheckout(true)
+		skipDefaultCheckout(true)
+   }
+
+    stages{
+        
+        stage('Git Checkout'){
+        steps {
+            script{
+				git branch: "main", url: 'https://github.com/suyogIsdevopsEngineer/Java_app.git'
+			}             
+            }
+        }
+
+        stage('Unit test Maven'){
+        steps {
+			script{
+				mvnTest()
+			}  
+        }
+        }
+        
+        stage('Integration Test maven'){
+            steps{
+				script{
+					mvnIntegration()
+				}
+            }
+        }
+
+        stage('Static code Analysis: Sonarqube'){
+            steps{
+				script{
+					def SonaraqubeCredentialsId = 'sonar-api'
+                sonarStaticAnalysis(SonaraqubeCredentialsId)
+				}
+            }
+        }
     }
-
-    stages {
-        stage('Git Checkout') {
-            steps {
-                script {
-                    git branch: "main", url: 'https://github.com/suyogIsdevopsEngineer/Java_app.git'
-                }
-            }
-        }
-
-        stage('Unit test Maven') {
-            steps {
-                script {
-                    mvnTest()
-                }
-            }
-        }
-
-        stage('Integration Test Maven') {
-            steps {
-                script {
-                    mvnIntegration()
-                }
-            }
-        }
-
-        stage('Static code Analysis: Sonarqube') {
-            steps {
-                script {
-                    def SonarqubeCredentialsId = 'sonar-api'
-                    sonarStaticAnalysis(SonarqubeCredentialsId)
-                }
-            }
-        }
     }
-}
