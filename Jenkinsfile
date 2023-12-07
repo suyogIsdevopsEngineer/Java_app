@@ -32,12 +32,9 @@ pipeline{
         stage('Static code Analysis: Sonarqube'){
             steps{
 
-                script{
                 def SonaraqubeCredentialsId = 'sonar-api'
                 sonarStaticAnalysis(SonaraqubeCredentialsId)
-
-                }
-                
+            
 
             }
         }
