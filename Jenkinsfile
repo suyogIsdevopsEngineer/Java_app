@@ -28,5 +28,11 @@ pipeline{
                 mvnIntegration()
             }
         }
+
+        stage('Static code Analysis: Sonarqube'){
+            steps{
+                sonarStaticAnalysis()
+            }
+        }
     }
     }
