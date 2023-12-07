@@ -1,3 +1,4 @@
+@Library('my-shared-librabry') _
 pipeline{
     agent any
 
@@ -5,10 +6,11 @@ pipeline{
         
         stage('Git Checkout'){
         steps {
-            script{
+            gitCheckout{
 
-                git branch: 'main', url: 'https://github.com/suyogIsdevopsEngineer/Java_app.git'
-
+                branch: "main"
+                url: 'https://github.com/suyogIsdevopsEngineer/Java_app.git'
+                
             }
         }
 
