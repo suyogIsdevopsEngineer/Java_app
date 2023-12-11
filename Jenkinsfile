@@ -37,7 +37,7 @@ pipeline {
             steps{
 				script{
                     
-					def SonaraqubeCredentialsId = 'sonar-api'
+					def SonaraqubeCredentialsId = 'openjdk-11-jenkins'
                     sonarStaticAnalysis(SonaraqubeCredentialsId)
 				}
             }
