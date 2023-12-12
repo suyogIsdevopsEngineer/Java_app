@@ -23,7 +23,7 @@ pipeline {
             }
         }
 
-/*        stage('Unit test Maven'){
+       stage('Unit test Maven'){
         steps {
 			script{
 				mvnTest()
@@ -48,7 +48,7 @@ pipeline {
                     sonarStaticAnalysis(SonaraqubeCredentialsId)
 				}
             }
-        } */
+        } 
 
         stage('Maven Build : maven'){
             steps{
