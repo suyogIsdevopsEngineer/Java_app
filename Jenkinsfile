@@ -72,7 +72,7 @@ pipeline {
             steps{
 				script{
                     
-                    dockerScanImage("${params.ImageName}","${params.hubUser}","${params.ImageTag}")
+                    dockerImageScan("${params.ImageName}","${params.hubUser}","${params.ImageTag}")
 				}
             }
         }
