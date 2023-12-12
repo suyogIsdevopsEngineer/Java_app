@@ -68,6 +68,15 @@ pipeline {
             }
         }
 
+        stage('docker Image Scan'){
+            steps{
+				script{
+                    
+                    dockerScanImage("${params.ImageName}","${params.hubUser}","${params.ImageTag}")
+				}
+            }
+        }
+
         stage('docker Image push'){
             steps{
 				script{
