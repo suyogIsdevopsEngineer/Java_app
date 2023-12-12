@@ -33,12 +33,12 @@ pipeline {
             }
         }
 
-        stage('Static code Analysis: Sonarqube'){
             
+            stage('Static code Analysis: Sonarqube'){
             steps{
 				script{
                     
-					def SonaraqubeCredentialsId = 'openjdk-11-jenkins'
+					def SonaraqubeCredentialsId = 'sonar'
                     sonarStaticAnalysis(SonaraqubeCredentialsId)
 				}
             }
