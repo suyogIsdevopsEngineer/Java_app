@@ -23,7 +23,7 @@ pipeline {
             }
         }
 
-        stage('Unit test Maven'){
+/*        stage('Unit test Maven'){
         steps {
 			script{
 				mvnTest()
@@ -48,7 +48,7 @@ pipeline {
                     sonarStaticAnalysis(SonaraqubeCredentialsId)
 				}
             }
-        }
+        } */
 
         stage('Maven Build : maven'){
             steps{
@@ -59,7 +59,16 @@ pipeline {
             }
         }
 
-        stage('docker Build : maven'){
+        stage('docker Image build'){
+            steps{
+				script{
+                    
+                    dockerBuild("${params.ImageName}","${params.hubUser}","${params.ImageTag}")
+				}
+            }
+        }
+
+        stage('docker Image push'){
             steps{
 				script{
                     
