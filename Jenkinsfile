@@ -63,7 +63,7 @@ pipeline {
             steps{
 				script{
                     
-                    dockerBuild("${param.ImageName}","${param.hubUser}","${param.ImageTag}")
+                    dockerBuild("${params.ImageName}","${params.hubUser}","${params.ImageTag}")
 				}
             }
         }
