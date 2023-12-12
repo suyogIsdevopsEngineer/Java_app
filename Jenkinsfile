@@ -2,6 +2,12 @@
 
 pipeline {
     agent any
+
+    parameters{
+        string(name: 'ImageName', description: "Name of docker build", defaultValue:  'javapp')
+        string(name: 'ImageTag', description: "Tag of docker build", defaultValue:  'v1')
+        string(name: 'hubUser', description: "Name of docker build", defaultValue:  'imsuyog')
+    }
 	
     options {
 		skipDefaultCheckout(true)
@@ -9,7 +15,7 @@ pipeline {
 
     stages{
         
-        stage('Git Checkout'){
+        stage('Git Checkout'){ 
         steps {
             script{
 				git branch: "main", url: 'https://github.com/suyogIsdevopsEngineer/Java_app.git'
@@ -49,6 +55,15 @@ pipeline {
 				script{
                     
                     mvnBuild()
+				}
+            }
+        }
+
+        stage('docker Build : maven'){
+            steps{
+				script{
+                    
+                    dockerBuild("${param.ImageName}","${param.hubUser}","${param.ImageTag}")
 				}
             }
         }
